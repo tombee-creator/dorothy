@@ -24,7 +24,7 @@ Then, you can find `compiler` and `cpu`.
 
 ```:test.txt
 func main() {
-  return 1 + 2
+  return 1 + 2;
 }
 ```
 
