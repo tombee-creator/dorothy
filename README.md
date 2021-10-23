@@ -31,7 +31,7 @@ func main() {
 Finally, type follow codes to run script.
 
 ```:
-./compiler test.txt
+./compiler test.txt test
 ./cpu test.bin
 ```
 
