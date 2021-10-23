@@ -16,7 +16,7 @@ func main() {
 Clone this repository, enter the directory and type follow command on Terminal to make library.
 ```:
 cd dorothy
-mkdir bin
+mkdir bin script obj
 ./test.sh
 ```
 
