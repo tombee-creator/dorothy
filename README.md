@@ -7,7 +7,7 @@ This programming language helps you to expand your project.
 You can write the follow code to calculate `1+2`.
 ```:
 func main() {
-  return 1 + 2
+  return 1 + 2;
 }
 ```
 
