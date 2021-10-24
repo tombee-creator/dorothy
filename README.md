@@ -35,14 +35,38 @@ Finally, type follow codes to run script.
 ./cpu test.bin
 ```
 
+## Features
+### Variables
+Define a variable below:
+```:
+int a;
+```
+*only integer currently.*
 
+Also, you can use addressive variables(type: integer) with `*`, `&`
+```:
+int a;
+int b = &a;
+```
+
+### Statements
+You can use `if`, `for`, `while`, `return`.
+
+### Function definition
+```:
+func fib(int n) {
+  if(n < 2) {
+    return n;
+  } else {
+    return fib(n - 1) + fib(n - 2);
+  }
+}
+```
 
 ## Running the tests
-
 Explain how to run the automated tests for this system
 
 ## Versioning
-
 We use [SemVer](http://semver.org/) for versioning.
 
 ## Authors
