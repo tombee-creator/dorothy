@@ -20,6 +20,12 @@ put(int sp, int *_memory) {
 }
 
 int
+input(int sp, int*_memory) {
+  cin >> _memory[sp + 1];
+  return 0;
+}
+
+int
 main(int argc, char **argv) {
     int index = 1;
     vector<Code> codes;
@@ -44,6 +50,7 @@ main(int argc, char **argv) {
     cpu.add(print);
     cpu.add(put);
     cpu.add(nl);
+    cpu.add(input);
     cpu.set(codes);
     return cpu.exe();
 }

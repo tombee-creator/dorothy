@@ -6,13 +6,17 @@ function try() {
     ./cpu $1
 }
 
-for script in $(ls script/ | sed s/.txt//g); do
-    ./compiler script/$script.txt bin/$script
+scripts=('test001' 'test002' 'test003' 'test004' 'test005' 'test006' 'test007')
+ans=(3 7 3 4 1 0 0)
+
+for i in $(seq 0 ${#scripts[@]}); do
+    ./compiler script/${scripts[$i]}.txt bin/${scripts[$i]}
 done
 
-for bin in $(ls bin/ | sed s/.bin//g); do
-    try bin/$bin.bin > txt/$bin.txt
-    echo $bin: $?
+for i in $(seq 0 ${#scripts[@]}); do
+    try bin/${scripts[$i]}.bin > txt/${scripts[$i]}.txt
+    echo ${scripts[$i]}: $? == ${ans[$i]}
 done
 
 rm -rf a.out
+

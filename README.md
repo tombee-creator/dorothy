@@ -63,6 +63,19 @@ func fib(int n) {
 }
 ```
 
+#### Built-in function
+You can use Built-in functions to output to console(such as display value to console, and so on) by below codes:
+```:
+import print
+```
+
+Now, you can use below:
+|function name|description|
+|----|----|
+|`print`|output argument value as **interger**|
+|`put`|output argument value as **character**|
+|`nl`|output new line|
+
 ## Running the tests
 Explain how to run the automated tests for this system
 
