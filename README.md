@@ -66,7 +66,7 @@ func fib(int n) {
 #### Built-in function
 You can use Built-in functions to output to console(such as display value to console, and so on) by below codes:
 ```:
-import print
+import print;
 ```
 
 Now, you can use below:
