@@ -58,6 +58,55 @@ DeclArrayVar::compile(vector<Code>& ofs, map<string, int>& vars, map<string, int
     throw CompileError((string("redeclared variable: ") + _id).c_str());
 }
 
+void
+InitializedDeclArrayVar::print(ostream& os, int tab) {
+    DeclVar::print(os, tab);
+    os << "[" << _num << "]={";
+    for(auto it = _values.begin(); it != _values.end(); ++it) {
+        (*it)->print(os, tab);
+        if(it + 1 != _values.end()) {
+            os << ',';
+        }
+    }
+    os << "}";
+}
+
+void 
+InitializedDeclArrayVar::compile(vector<Code>& ofs, map<string, int>& vars, map<string, int>& functions, int offset) {
+    if(!vars[_id]) { 
+        DeclVar::compile(ofs, vars, functions, offset);
+        ofs.push_back(Code::makeCode(Code::PUSHR, 2, 0));
+        ofs.push_back(Code::makeCode(Code::PUSHI, _num, 0));
+        ofs.push_back(Code::makeCode(Code::POP, 3, 0));
+        ofs.push_back(Code::makeCode(Code::SUB, 0, 0));
+        ofs.push_back(Code::makeCode(Code::PUSHR, 2, 0));
+        ofs.push_back(Code::makeCode(Code::POP, 3, 0));
+        ofs.push_back(Code::makeCode(Code::POP, 2, 0));
+        ofs.push_back(Code::makeCode(Code::STORE, 2, 3));
+        ofs.push_back(Code::makeCode(Code::MOVE, 1, 3));
+        for(int i = 0; i < _values.size(); i++) {
+            ofs.push_back(Code::makeCode(Code::MOVE, 2, 0));
+            ofs.push_back(Code::makeCode(Code::PUSHI, 1, 0));
+            ofs.push_back(Code::makeCode(Code::POP, 3, 0));
+            ofs.push_back(Code::makeCode(Code::SUB, 0, 0));
+            ofs.push_back(Code::makeCode(Code::LOAD, 2, 2));
+            ofs.push_back(Code::makeCode(Code::PUSHR, 2, 0));
+            ofs.push_back(Code::makeCode(Code::PUSHI, i, 0));
+            ofs.push_back(Code::makeCode(Code::POP, 3, 0));
+            ofs.push_back(Code::makeCode(Code::POP, 2, 0));
+            ofs.push_back(Code::makeCode(Code::ADD, 0, 0));
+            ofs.push_back(Code::makeCode(Code::PUSHR, 2, 0));
+            _values[i]->compile(ofs, vars, functions, offset);
+            ofs.push_back(Code::makeCode(Code::POP, 3, 0));
+            ofs.push_back(Code::makeCode(Code::POP, 2, 0));
+            ofs.push_back(Code::makeCode(Code::STORE, 2, 3));
+        }
+        vars["."] += _num;
+        return;
+    }
+    throw CompileError((string("redeclared variable: ") + _id).c_str());
+}
+
 void 
 DeclVarSt::print(ostream& os, int tab) {
     Node::addTab(os, tab);

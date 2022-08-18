@@ -24,6 +24,7 @@ private:
     Function *parse_function(vector<Token>&);
     vector<DeclVar *> parse_declargs(vector<Token>&);
     DeclVar *parse_declvar(vector<Token>&);
+    vector<Expression *> parse_array_initializer(vector<Token>&);
     Block *parse_block(vector<Token>&);
 
     Statement *parse_statement(vector<Token>&);

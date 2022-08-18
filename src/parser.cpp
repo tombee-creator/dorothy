@@ -54,10 +54,14 @@ Parser::parse_declvar(vector<Token>& tokens) {
     if(consume(tokens, (Token::Type)'[').type == Token::NONE) {
         return new DeclVar(id_token.id);
     } else {
-        Token token;
-        if((token = consume(tokens, Token::TK_INT)).type != Token::NONE) {
+        Token num_token;
+        if((num_token = consume(tokens, Token::TK_INT)).type != Token::NONE) {
             if(consume(tokens, (Token::Type)']').type != Token::NONE) {
-                return new DeclArrayVar(id_token.id, token.int_val);
+                if(consume(tokens, (Token::Type)'=').type != Token::NONE) {
+                    return new InitializedDeclArrayVar(id_token.id, num_token.int_val, parse_array_initializer(tokens));
+                } else {
+                    return new DeclArrayVar(id_token.id, num_token.int_val);
+                }
             } else {
                 throw ParseError("expected ']'", tokens[_pos]);
             }
@@ -65,6 +69,27 @@ Parser::parse_declvar(vector<Token>& tokens) {
             throw ParseError("array variableshould be initialized with 'INT'", tokens[_pos]);
         }
     }
+}
+
+vector<Expression *> 
+Parser::parse_array_initializer(vector<Token>& tokens) {
+    if(consume(tokens, (Token::Type)'{').type == Token::NONE) {
+        throw ParseError("expected '{'", tokens[_pos]); 
+    }
+    vector<Expression *> exprs;
+    auto exp = parse_expression(tokens);
+    if(exp) {
+        exprs.push_back(exp);
+        while(consume(tokens, (Token::Type)',').type != Token::NONE) {
+            exp = parse_expression(tokens);
+            if(!exp) throw ParseError(format("expected 'expression' at %d", _pos), tokens[_pos]);
+            exprs.push_back(exp);
+        }
+    }
+    if(consume(tokens, (Token::Type)'}').type == Token::NONE) {
+        throw ParseError("expected '}'", tokens[_pos]);
+    }
+    return exprs;
 }
 
 Block * 
@@ -90,7 +115,7 @@ Parser::parse_declvarst(vector<Token>& tokens) {
         return NULL;
     } else {
         if(consume(tokens, (Token::Type)';').type == Token::NONE)
-            throw ParseError(format("expected ';'"), tokens[_pos]);
+            throw ParseError(format("expected ';' at %d", _pos), tokens[_pos]);
         return new DeclVarSt(decl);
     }
 }

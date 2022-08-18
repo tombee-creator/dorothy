@@ -36,9 +36,19 @@ public:
 };
 
 class DeclArrayVar: public DeclVar {
+protected:
     int _num;
 public:
     DeclArrayVar(string id, int num): DeclVar(id), _num(num) {}
+
+    virtual void print(ostream&, int tab);
+    virtual void compile(vector<Code>&, map<string, int>&, map<string, int>&, int);
+};
+
+class InitializedDeclArrayVar: public DeclArrayVar {
+    vector<Expression *> _values;
+public:
+    InitializedDeclArrayVar(string id, int num, vector<Expression *>values): DeclArrayVar(id, num), _values(values) {}
 
     virtual void print(ostream&, int tab);
     virtual void compile(vector<Code>&, map<string, int>&, map<string, int>&, int);
