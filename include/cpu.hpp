@@ -9,7 +9,7 @@ using namespace std;
 
 #define REG_SIZE        4
 #ifndef STACK_SIZE
-    #define STACK_SIZE      128
+    #define STACK_SIZE      262144
 #endif
 #define BP_INDEX        0
 #define SP_INDEX        1
