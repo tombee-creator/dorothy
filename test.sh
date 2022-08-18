@@ -6,8 +6,8 @@ function try() {
     ./cpu $1
 }
 
-scripts=('test001')
-ans=(3)
+scripts=('test001' 'test002')
+ans=(3 55)
 
 for i in $(seq 0 ${#scripts[@]}); do
     ./compiler script/${scripts[$i]}.txt bin/${scripts[$i]}
