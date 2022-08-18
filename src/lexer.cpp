@@ -41,6 +41,7 @@ Lexer::tokenize(string p, int* ppos) {
         if(tokenize_operator(p, ppos, ')'))                     continue;
         if(tokenize_operator(p, ppos, '['))                     continue;
         if(tokenize_operator(p, ppos, ']'))                     continue;
+        if(tokenize_char(p, ppos))                              continue;
         if(tokenize_id(p, ppos))                                continue;
         if(tokenize_int(p, ppos))                               continue;
         throw LexerError(format("undefined token: %c", p[*ppos]).data());
@@ -63,6 +64,17 @@ Lexer::tokenize_int(string p, int* ppos) {
     while(p[*ppos] >= '0' && p[*ppos] <= '9') (*ppos)++;
     string str = p.substr(start, *ppos - start);
     tokens.push_back(Token::make_int(stoi(str)));
+    return true;
+}
+
+bool 
+Lexer::tokenize_char(string p, int *ppos) {
+    if(p[*ppos] != '\'') return false;
+    (*ppos)++;
+    tokens.push_back(Token::make_int(p[*ppos]));
+    (*ppos)++;
+    if(p[*ppos] != '\'') exit(-1);
+    (*ppos)++;
     return true;
 }
 
