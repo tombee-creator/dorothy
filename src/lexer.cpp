@@ -69,8 +69,8 @@ Lexer::tokenize_int(string p, int* ppos) {
 bool 
 Lexer::tokenize_id(string p, int* ppos) {
     int start = *ppos;
-    if(p[start] < 'A' || p[start] > 'z') return false;
-    while((p[*ppos] >= 'A' && p[*ppos] <= 'Z') || (p[*ppos] >= 'a' && p[*ppos] <= 'z')) (*ppos)++;
+    if(p[start] < 'A' || p[start] > 'z' || p[start] == '_') return false;
+    while((p[*ppos] >= 'A' && p[*ppos] <= 'Z') || (p[*ppos] >= 'a' && p[*ppos] <= 'z') || p[*ppos] == '_') (*ppos)++;
     string str = p.substr(start, *ppos - start);
     tokens.push_back(Token::make_id(str));
     return true;
