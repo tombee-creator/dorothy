@@ -41,6 +41,8 @@ Lexer::tokenize(string p, int* ppos) {
         if(tokenize_operator(p, ppos, ')'))                     continue;
         if(tokenize_operator(p, ppos, '['))                     continue;
         if(tokenize_operator(p, ppos, ']'))                     continue;
+        if(tokenize_str(p, ppos))                                continue;
+        if(tokenize_char(p, ppos))                              continue;
         if(tokenize_id(p, ppos))                                continue;
         if(tokenize_int(p, ppos))                               continue;
         throw LexerError(format("undefined token: %c", p[*ppos]).data());
@@ -67,10 +69,38 @@ Lexer::tokenize_int(string p, int* ppos) {
 }
 
 bool 
+Lexer::tokenize_char(string p, int *ppos) {
+    if(p[*ppos] != '\'') return false;
+    (*ppos)++;
+    tokens.push_back(Token::make_int(p[*ppos]));
+    (*ppos)++;
+    if(p[*ppos] != '\'') exit(-1);
+    (*ppos)++;
+    return true;
+}
+
+bool 
+Lexer::tokenize_str(string p, int *ppos) {
+    if(p[*ppos] != '\"') return false;
+    (*ppos)++;
+    tokens.push_back(Token::make_operator((Token::Type)'{'));
+    while(true) {
+        if(p[*ppos] == '\"') { break; }
+        tokens.push_back(Token::make_int(p[*ppos]));
+        tokens.push_back(Token::make_operator((Token::Type)','));
+        (*ppos)++;
+    }
+    tokens.push_back(Token::make_int(0));
+    tokens.push_back(Token::make_operator((Token::Type)'}'));
+    (*ppos)++;
+    return true;
+}
+
+bool 
 Lexer::tokenize_id(string p, int* ppos) {
     int start = *ppos;
-    if(p[start] < 'A' || p[start] > 'z') return false;
-    while((p[*ppos] >= 'A' && p[*ppos] <= 'Z') || (p[*ppos] >= 'a' && p[*ppos] <= 'z')) (*ppos)++;
+    if(p[start] < 'A' || p[start] > 'z' || p[start] == '_') return false;
+    while((p[*ppos] >= 'A' && p[*ppos] <= 'Z') || (p[*ppos] >= 'a' && p[*ppos] <= 'z') || p[*ppos] == '_') (*ppos)++;
     string str = p.substr(start, *ppos - start);
     tokens.push_back(Token::make_id(str));
     return true;
