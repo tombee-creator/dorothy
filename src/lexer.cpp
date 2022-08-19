@@ -41,6 +41,7 @@ Lexer::tokenize(string p, int* ppos) {
         if(tokenize_operator(p, ppos, ')'))                     continue;
         if(tokenize_operator(p, ppos, '['))                     continue;
         if(tokenize_operator(p, ppos, ']'))                     continue;
+        if(tokenize_str(p, ppos))                                continue;
         if(tokenize_char(p, ppos))                              continue;
         if(tokenize_id(p, ppos))                                continue;
         if(tokenize_int(p, ppos))                               continue;
@@ -74,6 +75,23 @@ Lexer::tokenize_char(string p, int *ppos) {
     tokens.push_back(Token::make_int(p[*ppos]));
     (*ppos)++;
     if(p[*ppos] != '\'') exit(-1);
+    (*ppos)++;
+    return true;
+}
+
+bool 
+Lexer::tokenize_str(string p, int *ppos) {
+    if(p[*ppos] != '\"') return false;
+    (*ppos)++;
+    tokens.push_back(Token::make_operator((Token::Type)'{'));
+    while(true) {
+        if(p[*ppos] == '\"') { break; }
+        tokens.push_back(Token::make_int(p[*ppos]));
+        tokens.push_back(Token::make_operator((Token::Type)','));
+        (*ppos)++;
+    }
+    tokens.push_back(Token::make_int(0));
+    tokens.push_back(Token::make_operator((Token::Type)'}'));
     (*ppos)++;
     return true;
 }
