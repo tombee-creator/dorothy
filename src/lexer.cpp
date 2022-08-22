@@ -108,13 +108,12 @@ Lexer::tokenize_id(string p, int* ppos) {
 
 bool 
 Lexer::tokenize_keyword(string p, int* ppos, string keyword, Token::Type type) {
-    if(p.substr(*ppos, keyword.size()) == keyword) {
-        (*ppos) += keyword.size();
-        tokens.push_back(Token::make_operator(type));
-        return true;
-    } else {
-        return false;
-    }
+    int nextIndex = (*ppos) + keyword.size();
+    if(p.substr(*ppos, keyword.size()) != keyword) { return false; }
+    if(p[nextIndex] >= 'A' && p[nextIndex] <= 'z') {   return false; }
+    (*ppos) += keyword.size();
+    tokens.push_back(Token::make_operator(type));
+    return true;
 }
 
 bool 
