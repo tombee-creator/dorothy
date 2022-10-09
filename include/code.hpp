@@ -1,7 +1,9 @@
-#ifndef _CODE_H_
-#define _CODE_H_
+/* Copyright 2022(Tomoya Bansho@tomoya-kwansei) */
+#ifndef CODE_HPP_
+#define CODE_HPP_
 
 #include <iostream>
+#include <string>
 
 struct Code {
     int index;
@@ -42,4 +44,4 @@ struct Code {
     static Code makeCode(Code::Mnemonic, int, int);
 };
 
-#endif
+#endif  // CODE_HPP_

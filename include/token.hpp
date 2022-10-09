@@ -1,8 +1,11 @@
+/* Copyright 2022(Tomoya Bansho@tomoya-kwansei) */
 #pragma once
 
 #include <iostream>
-#include "utils.hpp"
-using namespace std;
+#include <string>
+
+#include "./utils.hpp"
+using std::string;
 
 struct Token {
     enum Type {
@@ -24,8 +27,8 @@ struct Token {
         KW_FOR,
     } type;
 
-    int     int_val;
-    string  id;
+    int int_val;
+    string id;
 
     static Token make_int(int value) {
         Token token;
