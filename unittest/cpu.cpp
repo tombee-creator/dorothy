@@ -1,37 +1,34 @@
-#include <fstream>
+/* Copyright 2022(Tomoya Bansho@tomoya-kwansei) */
 #include "../include/cpu.hpp"
 
-int
-print(int sp, int *_memory) {
+#include <fstream>
+
+int print(int sp, int *_memory) {
     cout << _memory[sp];
     return 0;
 }
 
-int
-nl(int sp, int *_memory) {
+int nl(int sp, int *_memory) {
     cout << endl;
     return 0;
 }
 
-int
-put(int sp, int *_memory) {
-    cout << (char)_memory[sp];
+int put(int sp, int *_memory) {
+    cout << static_cast<char>(_memory[sp]);
     return 0;
 }
 
-int
-input(int sp, int*_memory) {
-  cin >> _memory[sp + 1];
-  return 0;
+int input(int sp, int *_memory) {
+    cin >> _memory[sp + 1];
+    return 0;
 }
 
-int
-main(int argc, char **argv) {
+int main(int argc, char **argv) {
     int index = 1;
     vector<Code> codes;
     ifstream ifs(argv[1]);
     char str[256];
-    while(ifs.getline(str, 256 - 1)) {
+    while (ifs.getline(str, 256 - 1)) {
         char s[128];
         int op1;
         int op2;
