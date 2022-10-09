@@ -1,6 +1,5 @@
 /* Copyright 2022(Tomoya Bansho@tomoya-kwansei) */
 #include "../include/ast.hpp"
-using std;
 
 void Node::addTab(ostream& os, int tab) {
     for (int i = 0; i < tab; i++) {

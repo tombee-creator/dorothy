@@ -5,6 +5,8 @@
 #include <string>
 
 #include "./token.hpp"
+using std::runtime_error;
+using std::vector;
 
 class LexerError : public runtime_error {
  public:

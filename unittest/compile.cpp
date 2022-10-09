@@ -2,6 +2,12 @@
 #include "../include/lexer.hpp"
 #include "../include/parser.hpp"
 
+using std::cout;
+using std::cin;
+using std::endl;
+using std::ifstream;
+using std::ofstream;
+
 int main(int argc, char **argv) {
     if (argc > 0) {
         string str;

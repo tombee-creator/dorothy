@@ -8,6 +8,8 @@
 #include "./token.hpp"
 #include "./utils.hpp"
 
+using std::vector;
+
 class ParseError : public runtime_error {
     Token _token;
 
@@ -23,7 +25,7 @@ class Parser {
     vector<Function *> _functions;
 
  public:
-    vector<Function *> parse(const vector<Token> &tokens);
+    vector<Function *> parse(vector<Token> &tokens);
 
  private:
     Token consume(vector<Token> &, Token::Type);
@@ -38,9 +40,9 @@ class Parser {
     Statement *parse_declvarst(vector<Token> &);
     Statement *parse_ifst(vector<Token> &);
     Statement *parse_whilest(vector<Token> &);
-    Statement *parse_forst(const vector<Token> &tokens);
+    Statement *parse_forst(vector<Token> &tokens);
     Statement *parse_returnst(vector<Token> &);
-    Statement *parse_callst(const vector<Token> &tokens);
+    Statement *parse_callst(vector<Token> &tokens);
 
     Expression *parse_expression(vector<Token> &);
     Expression *parse_assign(vector<Token> &);
@@ -52,5 +54,5 @@ class Parser {
     Expression *parse_term(vector<Token> &);
     Expression *parse_integer(vector<Token> &);
     Expression *parse_call(vector<Token> &);
-    vector<Expression *> parse_arg(const vector<Token> &);
+    vector<Expression *> parse_arg(vector<Token> &);
 };

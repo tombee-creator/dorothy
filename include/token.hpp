@@ -5,7 +5,7 @@
 #include <string>
 
 #include "./utils.hpp"
-using std;
+using std::string;
 
 struct Token {
     enum Type {

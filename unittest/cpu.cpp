@@ -2,6 +2,11 @@
 #include "../include/cpu.hpp"
 
 #include <fstream>
+using std::cout;
+using std::cin;
+using std::endl;
+using std::ifstream;
+using std::ofstream;
 
 int print(int sp, int *_memory) {
     cout << _memory[sp];

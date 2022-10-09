@@ -9,7 +9,16 @@
 
 #include "./code.hpp"
 #include "./utils.hpp"
-using std;
+using std::vector;
+using std::ostream;
+using std::string;
+using std::map;
+using std::endl;
+using std::cerr;
+using std::ifstream;
+using std::to_string;
+using std::exception;
+using std::runtime_error;
 
 class Expression;
 class Statement;

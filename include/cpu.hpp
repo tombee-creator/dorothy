@@ -7,7 +7,10 @@
 #include <vector>
 
 #include "./code.hpp"
-using std;
+using std::vector;
+using std::unordered_set;
+using std::ostream;
+using std::endl;
 
 #define REG_SIZE 4
 #ifndef STACK_SIZE
