@@ -33,6 +33,8 @@ class Node {
     virtual void print(ostream &, int tab) = 0;
     virtual void compile(vector<Code> &, map<string, int> &, map<string, int> &,
                          int) = 0;
+   virtual void compileLLVM(vector<Code> &, map<string, int> &, map<string, int> &,
+                         int);
 
     static void addTab(ostream &, int tab);
 };

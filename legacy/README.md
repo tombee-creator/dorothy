@@ -1,7 +1,6 @@
-# Dorothy -Cheers me to Produce Programming Language-
-Producing programming language is so FUN!!.
+# Dorothy(Legacy)
 
-It doesn't need to go without saying.
+This programming language helps you to expand your project.
 
 ## Getting Started
 
