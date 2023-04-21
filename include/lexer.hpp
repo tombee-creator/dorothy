@@ -1,32 +1,23 @@
-/* Copyright 2022(Tomoya Bansho@tomoya-kwansei) */
 #pragma once
-
+#include <iostream>
 #include <vector>
-#include <string>
+#include <cstdio>
 
-#include "./token.hpp"
-using std::runtime_error;
-using std::vector;
+namespace Dorothy {
+    class Lexer {
+    public:
+        class Token;
 
-class LexerError : public runtime_error {
- public:
-    explicit LexerError(char* message) : runtime_error(message) {}
-};
+        std::vector<Token> lex(char *);
+    private:
+        std::vector<Token> tokens;
+        int currentIndex = 0;
 
-class Lexer {
-    vector<Token> tokens;
+        bool tokenizeInteger(char *);
 
- public:
-    vector<Token> lex(string);
+        bool isDigit(char);
+        void copyString(char *from, char *to, int length);
+    };
+}
 
- private:
-    void tokenize(string, int*);
-    bool skip(string, int*);
-    bool tokenize_int(string, int*);
-    bool tokenize_id(string, int*);
-    bool tokenize_char(string, int*);
-    bool tokenize_str(string, int*);
-    bool tokenize_keyword(string p, int* ppos, string keyword,
-                          Token::Type type);
-    bool tokenize_operator(string, int*, char);
-};
+#include "token.hpp"

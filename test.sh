@@ -1,22 +1,19 @@
-#!/usr/bin/env bash
-
-make test
-
-function try() {
-    ./cpu $1
+function try () {
+    ./a.out $3 > test.ll
+    clang -w -o test test.ll
+    ./test
+    if [ $? = $2 ]; then
+        echo "($1) OK"
+    else
+        printf "\e[31m($1) NG: $? != $2\e[m\n"
+        return
+    fi
 }
 
-scripts=('test001' 'test002' 'test003' 'test004' 'test005' 'test006' 'test007' 'test008' 'test009' 'test010')
-ans=(3 55 3 0 0 0 0 0 0 0)
-
-for i in $(seq 0 ${#scripts[@]}); do
-    ./compiler script/${scripts[$i]}.txt bin/${scripts[$i]}
-done
-
-for i in $(seq 0 ${#scripts[@]}); do
-    try bin/${scripts[$i]}.bin > txt/${scripts[$i]}.txt
-    echo ${scripts[$i]}: $? == ${ans[$i]}
-done
-
-rm -rf a.out
-
+make compile
+try 1 11 "11"
+try 2 12 "12"
+try 3 10 "10"
+try 4 0 "0"
+try 5 101 "101"
+`rm -rf test a.out test.ll`

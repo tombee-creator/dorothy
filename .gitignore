@@ -1,9 +1,3 @@
-obj/
-bin/
-txt/
-.vscode/
-Lib/
+obj/*.*
+.envrc
 
-.DS_Store
-compiler
-cpu
