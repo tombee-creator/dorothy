@@ -123,6 +123,7 @@ bool Lexer::tokenize_operator(string p, int* ppos, char c) {
         (*ppos)++;
         tokens.push_back(Token::make_operator((Token::Type)c));
         return true;
-    } else
+    } else {
         return false;
+    }
 }
