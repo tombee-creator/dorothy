@@ -1,5 +1,5 @@
 function try () {
-    ./a.out > test.ll
+    ./a.out $3 > test.ll
     clang -w -o test test.ll
     ./test
     if [ $? = $2 ]; then
@@ -11,6 +11,9 @@ function try () {
 }
 
 make compile
-try 1 11
-try 2 12
+try 1 11 "11"
+try 2 12 "12"
+try 3 10 "10"
+try 4 0 "0"
+try 5 101 "101"
 `rm -rf test a.out test.ll`
