@@ -7,7 +7,7 @@ Lexer::lex(char *inputLine) {
     while(inputLine[currentIndex] != '\0') {
         if(tokenizeInteger(inputLine)) continue;
     }
-    return tokens;
+    return _tokens;
 }
 
 bool
@@ -30,7 +30,7 @@ Lexer::tokenizeInteger(char *inputLine) {
     int intValue = atoi(newString);
     delete[] newString;
     
-    tokens.push_back(Token::createInteger(intValue));
+    _tokens.push_back(Token::createInteger(intValue));
 
     return true;
 }

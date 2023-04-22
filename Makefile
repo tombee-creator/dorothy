@@ -1,2 +1,5 @@
 compile:
-	g++ --std=c++11 src/entry/main.cpp src/dorothy/token.cpp src/dorothy/lexer.cpp
+	g++ -w --std=c++14 src/entry/main.cpp src/dorothy/*.cpp
+
+test:
+	g++ -w --std=c++14 tests/*.cpp src/dorothy/*.cpp -pthread -lgtest_main -lgtest

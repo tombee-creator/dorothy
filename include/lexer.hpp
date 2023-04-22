@@ -10,7 +10,7 @@ namespace Dorothy {
 
         std::vector<Token> lex(char *);
     private:
-        std::vector<Token> tokens;
+        std::vector<Token> _tokens;
         int currentIndex = 0;
 
         bool tokenizeInteger(char *);
