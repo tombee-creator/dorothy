@@ -14,7 +14,18 @@ Program::print(ostream &os) {
     os << endl;
 }
 
+bool 
+Program::canParse(vector<Lexer::Token> tokens, int currentIndex) {
+    START_AST_NODE ast;
+    return ast.canParse(tokens, currentIndex);
+}
+
 void
 IntegerExpression::print(ostream &os) {
     os << _integer;
+}
+
+bool 
+IntegerExpression::canParse(vector<Lexer::Token> tokens, int currentIndex) {
+    return tokens[currentIndex].getType() == Lexer::Token::Type::TK_INT;
 }
