@@ -9,6 +9,9 @@ function try () {
         return
     fi
 }
+make test
+./a.out
+`rm -rf a.out`
 
 make compile
 try 1 11 "11"
