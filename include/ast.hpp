@@ -14,7 +14,6 @@ namespace Dorothy {
     class ASTNode {
     public:
         virtual void print(ostream &) = 0;
-        virtual bool canParse(vector<Lexer::Token>, int) = 0;
     protected:
         void printTab(ostream &os, int tab);
     private:
@@ -28,7 +27,6 @@ namespace Dorothy {
             _program(start) {}
 
         virtual void print(ostream &);
-        virtual bool canParse(vector<Lexer::Token>, int);
     protected:
     private:
     };
@@ -48,7 +46,6 @@ namespace Dorothy {
             Expression(), _integer(integer) {}
         
         virtual void print(ostream &);
-        virtual bool canParse(vector<Lexer::Token>, int);
 
         int getInteger();
     protected:

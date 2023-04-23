@@ -7,6 +7,9 @@ using namespace std;
     CLASS_NAME * \
     Parser::parse<CLASS_NAME>(vector<Lexer::Token> tokens)
 
+#define CREATE_CAN_PARSE_FUNCTION(CLASS_NAME) template<> \
+    bool Parser::canParse<CLASS_NAME>(vector<Lexer::Token> tokens)
+
 namespace Dorothy {
     class Parser {
         int _currentIndex;
@@ -18,9 +21,6 @@ namespace Dorothy {
     protected:
     private:
         template<class T>
-        bool canParse(vector<Lexer::Token> tokens) {
-            T instance;
-            return instance.canParse(tokens, _currentIndex);
-        }
+        bool canParse(vector<Lexer::Token> tokens);
     };
 }
