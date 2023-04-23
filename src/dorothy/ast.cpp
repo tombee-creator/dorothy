@@ -29,3 +29,8 @@ bool
 IntegerExpression::canParse(vector<Lexer::Token> tokens, int currentIndex) {
     return tokens[currentIndex].getType() == Lexer::Token::Type::TK_INT;
 }
+
+int 
+IntegerExpression::getInteger() {
+    return _integer;
+}

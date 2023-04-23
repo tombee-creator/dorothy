@@ -49,6 +49,8 @@ namespace Dorothy {
         
         virtual void print(ostream &);
         virtual bool canParse(vector<Lexer::Token>, int);
+
+        int getInteger();
     protected:
     private:
     };
