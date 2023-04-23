@@ -3,6 +3,10 @@
 #include "./ast.hpp"
 using namespace std;
 
+#define CREATE_PARSE_FUNCTION(CLASS_NAME) template<> \
+    CLASS_NAME * \
+    Parser::parse<CLASS_NAME>(vector<Lexer::Token> tokens)
+
 namespace Dorothy {
     class Parser {
         int _currentIndex;
