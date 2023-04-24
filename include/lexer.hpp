@@ -3,11 +3,12 @@
 #include <vector>
 #include <cstdio>
 
+#include "./token.hpp"
+using namespace std;
+
 namespace Dorothy {
     class Lexer {
     public:
-        class Token;
-
         std::vector<Token> lex(char *);
     private:
         std::vector<Token> _tokens;
@@ -19,5 +20,3 @@ namespace Dorothy {
         void copyString(char *from, char *to, int length);
     };
 }
-
-#include "token.hpp"
