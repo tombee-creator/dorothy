@@ -1,10 +1,9 @@
 #pragma once
 #include <iostream>
-#include "lexer.hpp"
 using namespace std;
 
 namespace Dorothy {
-    class Lexer::Token {
+    class Token {
     public:
         enum Type {
             TK_EOF = 0,

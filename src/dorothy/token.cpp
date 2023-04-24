@@ -1,23 +1,23 @@
 #include "../../include/token.hpp"
 using namespace Dorothy;
 
-Lexer::Token 
-Lexer::Token::createInteger(int integer) {
+Token 
+Token::createInteger(int integer) {
     return Token(integer);
 }
 
-Lexer::Token 
-Lexer::Token::createToken(char tokenType) 
+Token 
+Token::createToken(char tokenType) 
 {
-    return Token((Lexer::Token::Type)tokenType);
+    return Token((Token::Type)tokenType);
 }
 
 int
-Lexer::Token::getInteger() {
+Token::getInteger() {
     return _integer;
 }
 
-Lexer::Token::Type
-Lexer::Token::getType() {
+Token::Type
+Token::getType() {
     return _type;
 }

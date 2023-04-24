@@ -3,8 +3,8 @@
 using namespace Dorothy;
 
 TEST(ParserTest, ParserHandleInteger01) {
-    vector<Lexer::Token> tokens;
-    tokens.push_back(Lexer::Token::createInteger(11));
+    vector<Token> tokens;
+    tokens.push_back(Token::createInteger(11));
     
     Parser parser;
     IntegerExpression *integerExpression = parser.parse<IntegerExpression>(tokens);
@@ -12,8 +12,8 @@ TEST(ParserTest, ParserHandleInteger01) {
 }
 
 TEST(ParserTest, ParserHandleInteger02) {
-    vector<Lexer::Token> tokens;
-    tokens.push_back(Lexer::Token::createInteger(-11));
+    vector<Token> tokens;
+    tokens.push_back(Token::createInteger(-11));
     
     Parser parser;
     IntegerExpression *integerExpression = parser.parse<IntegerExpression>(tokens);

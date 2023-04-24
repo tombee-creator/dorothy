@@ -2,7 +2,7 @@
 using namespace Dorothy;
 using namespace std;
 
-vector<Lexer::Token>
+vector<Token>
 Lexer::lex(char *inputLine) {
     while(inputLine[currentIndex] != '\0') {
         if(tokenizeInteger(inputLine)) continue;

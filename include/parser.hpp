@@ -5,10 +5,10 @@ using namespace std;
 
 #define CREATE_PARSE_FUNCTION(CLASS_NAME) template<> \
     CLASS_NAME * \
-    Parser::parse<CLASS_NAME>(vector<Lexer::Token> tokens)
+    Parser::parse<CLASS_NAME>(vector<Token> tokens)
 
 #define CREATE_CAN_PARSE_FUNCTION(CLASS_NAME) template<> \
-    bool Parser::canParse<CLASS_NAME>(vector<Lexer::Token> tokens)
+    bool Parser::canParse<CLASS_NAME>(vector<Token> tokens)
 
 namespace Dorothy {
     class Parser {
@@ -17,10 +17,10 @@ namespace Dorothy {
         Parser(): _currentIndex(0) {}
 
         template<class T>
-        T *parse(vector<Lexer::Token> tokens);
+        T *parse(vector<Token> tokens);
     protected:
     private:
         template<class T>
-        bool canParse(vector<Lexer::Token> tokens);
+        bool canParse(vector<Token> tokens);
     };
 }
