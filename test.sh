@@ -14,9 +14,9 @@ make test
 `rm -rf a.out`
 
 make compile
-try 1 11 "11"
-try 2 12 "12"
-try 3 10 "10"
-try 4 0 "0"
-try 5 101 "101"
+try 1 11 "return 11"
+try 2 12 "return 12"
+try 3 10 "return 10"
+try 4 0 "return 0"
+try 5 101 "return 101"
 `rm -rf test a.out test.ll`

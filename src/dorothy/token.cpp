@@ -7,9 +7,13 @@ Token::createInteger(int integer) {
 }
 
 Token 
-Token::createToken(char tokenType) 
-{
+Token::createToken(char tokenType) {
     return Token((Token::Type)tokenType);
+}
+
+Token
+Token::createKeywordToken(Token::Type tokenType) {
+    return Token(tokenType);
 }
 
 int

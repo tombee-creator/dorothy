@@ -8,14 +8,16 @@ namespace Dorothy {
         enum Type {
             TK_EOF = 0,
             TK_INT,
+            TK_RET,
             TK_ADD = '+',
             TK_SUB = '-',
             TK_MUL = '*',
             TK_DIV = '/',
-            TK_MOD = '%'
+            TK_MOD = '%',
         } _type;
         static Token createInteger(int);
         static Token createToken(char);
+        static Token createKeywordToken(Token::Type);
 
         int getInteger();
         Type getType();
