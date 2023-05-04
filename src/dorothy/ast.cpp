@@ -15,6 +15,19 @@ Program::print(ostream &os) {
 }
 
 void
+ReturnStatement::print(ostream &os) {
+    printTab(os, 1);
+    os << "return ";
+    _expr->print(os);
+    os << endl;
+}
+
+Expression * 
+ReturnStatement::getExpression() {
+    return _expr;
+}
+
+void
 IntegerExpression::print(ostream &os) {
     os << _integer;
 }
