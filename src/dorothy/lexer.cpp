@@ -3,11 +3,35 @@ using namespace Dorothy;
 using namespace std;
 
 vector<Token>
-Lexer::lex(char *inputLine) {
-    while(inputLine[currentIndex] != '\0') {
-        if(tokenizeInteger(inputLine)) continue;
+Lexer::lex(char *input) {
+    while(input[currentIndex] != '\0') {
+        if(tokenizeKeywordToken(Token::TK_RET, "return", input)) continue;
+        if(tokenizeInteger(input)) continue;
+        if(skipSpace(input)) continue;
+        cerr << "can't tokenize symbol: " << input[currentIndex] << endl;
+        exit(-1);
     }
     return _tokens;
+}
+
+bool 
+Lexer::skipSpace(char *input) {
+    if(input[currentIndex] != ' ' && 
+        input[currentIndex] != '\t' && 
+        input[currentIndex] != '\r' && 
+        input[currentIndex] != '\n') {
+            return false;
+    }
+    currentIndex++;
+    return true;
+}
+
+bool
+Lexer::tokenizeKeywordToken(Token::Type type, char *keyword, char *inputLine) {
+    if(strncmp(keyword, inputLine + currentIndex, strlen(keyword)) != 0) return false;
+    currentIndex += strlen(keyword);
+    _tokens.push_back(Token::createKeywordToken(Token::TK_RET));
+    return true;
 }
 
 bool

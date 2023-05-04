@@ -15,6 +15,8 @@ namespace Dorothy {
         int currentIndex = 0;
 
         bool tokenizeInteger(char *);
+        bool tokenizeKeywordToken(Token::Type, char *, char *);
+        bool skipSpace(char *);
 
         bool isDigit(char);
         void copyString(char *from, char *to, int length);
