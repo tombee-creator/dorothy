@@ -5,9 +5,9 @@ using namespace std;
 vector<Token>
 Lexer::lex(char *input) {
     while(input[currentIndex] != '\0') {
-        if(tokenizeKeywordToken(Token::TK_RET, "return", input)) continue;
-        if(tokenizeInteger(input)) continue;
-        if(skipSpace(input)) continue;
+        if(tokenizeKeywordToken(Token::TK_RET, "return", input)) { continue; }
+        if(tokenizeInteger(input)) { continue; }
+        if(skipSpace(input)) { continue; }
         cerr << "can't tokenize symbol: " << input[currentIndex] << endl;
         exit(-1);
     }
