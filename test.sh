@@ -1,5 +1,9 @@
 function try () {
-    ./a.out $3 > test.ll
+    ./a.out "$3" > test.ll
+    if [ $? = 255 ]; then
+        echo "($1) \"$3\" COMPILE ERROR"
+        return
+    fi
     clang -w -o test test.ll
     ./test
     if [ $? = $2 ]; then
